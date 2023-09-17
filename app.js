@@ -30,18 +30,12 @@ app.get("/", (req, res)=> {
     res.send("home page")
 })
 
-const port=5000;
+const port=process.env.PORT || 4000;
 
-const start = async = () => {
-    try {
-        app.listen(port, () => {
-            //connectDB(process.env.MONGO_URI);
-            //connectDB(process.env.JWT.SECRET);
-          console.log(`server is listening at port ${port}`);
-        });
-    } catch (error) {
-        console.log(error); 
-    }
+async function start() {
+    await connectDB(process.env.MONGO_URI);
+    console.log("DB connected")
+    app.listen(port, console.log(`server is listening at port ${port}`))
 }
 
 start();
