@@ -1,4 +1,4 @@
-const CustomError=require("./errors/custom-errors.js")
+const CustomError=require("./custom-errors")
 const {StatusCodes}=require("http-status-codes");
 
 
