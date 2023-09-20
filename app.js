@@ -6,8 +6,7 @@ const connectDB=require("./db/connectDB");
 const authRouter = require("./routes/auth.js");
 const jobsRouter = require("./routes/jobs.js");
 
-
-const errorHandlerMiddleware = require("./middleware/error-handler.js")
+const errorHandlerMiddleware = require("./middleware/error-handler.js");
 const notFoundMiddleware = require("./middleware/not-found.js");
 
 app.use(express.json());
