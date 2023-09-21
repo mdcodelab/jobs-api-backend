@@ -34,6 +34,11 @@ this.password=await bcrypt.hash(this.password, salt);
 //   this.password = await bcrypt.hash(this.password, salt);
 // });
 
-
+UserSchema.methods.comparePassword = async function (candidatePassword) {
+const iMatch = bcrypt.compare(candidatePassword, this.password);  //password - that from the db
+return iMatch;
+}
 
 module.exports = mongoose.model("User", UserSchema);
+
+

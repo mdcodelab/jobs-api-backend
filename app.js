@@ -3,6 +3,7 @@ const express = require("express");
 require("express-async-errors");
 const app = express();
 const connectDB=require("./db/connectDB");
+const authenticateUser = require("./middleware/authentication");
 const authRouter = require("./routes/auth.js");
 const jobsRouter = require("./routes/jobs.js");
 
@@ -17,7 +18,7 @@ app.use(express.json());
 //domain/api/v1/jobs
 //domain/api/v1/jobs/:id
 app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/jobs", jobsRouter);
+app.use("/api/v1/jobs", authenticateUser, jobsRouter);
 
 
 app.use(errorHandlerMiddleware);
