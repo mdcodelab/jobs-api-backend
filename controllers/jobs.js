@@ -5,10 +5,11 @@ const {NotFound}=require("../errors/not-found");
 const {StatusCodes}=require("http-status-codes");
 
 const getAllJobs = async (req, res) => {
-  
-    res.send("get all jobs");
+  //looking for the jobs associated with a user (not all the jobs);
+  //for all the jobs, const job = await Job.find({})
+  const jobs = await Job.find({createdBy: req.user.userId}).sort("createdAt");
+  res.status(StatusCodes.OK).json({jobs, count:jobs.length});
 }
-
 
 const getJob = async (req, res) => {
   res.send("get job");
