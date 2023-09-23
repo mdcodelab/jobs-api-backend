@@ -88,13 +88,14 @@ const updateJob = async (req, res) => {
 };
 
 
-
-
-
-
-
 const deleteJob = async (req, res) => {
-  res.send("job deleted");
+  const jobId=req.params.id;
+  const userId=req.user.userId;
+  const jobToDelete = await Job.findByIdAndRemove({_id: jobId, createdBy: userId});
+  if (!jobToDelete) {
+    throw new NotFound ("There is no job to delete");
+  }
+  res.status(StatusCodes.ACCEPTED).json({jobToDelete});
 };
 
 
