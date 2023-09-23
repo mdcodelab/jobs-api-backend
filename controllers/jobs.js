@@ -11,9 +11,32 @@ const getAllJobs = async (req, res) => {
   res.status(StatusCodes.OK).json({jobs, count:jobs.length});
 }
 
+
 const getJob = async (req, res) => {
-  res.send("get job");
+  const {
+    user: { userId },
+  } = req;
+
+  const jobs = await Job.find({ createdBy: userId });
+
+  if (!jobs || jobs.length === 0) {
+    throw new NotFound(`No jobs found for user with id ${userId}`);
+  }
+
+  res.status(StatusCodes.OK).json({ jobs });
 };
+
+
+// or:
+// const getJob = async (req, res) => {
+//   const job = await Job.find({ createdBy: req.user.userId });
+//   if (!job) {
+//     return res.status(StatusCodes.NOT_FOUND).json({ message: "Job not found" });
+//   }
+//   res.status(StatusCodes.OK).json({ job });
+// };
+
+
 
 
 const createJob = async (req, res) => {
