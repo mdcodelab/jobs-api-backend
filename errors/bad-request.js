@@ -10,3 +10,4 @@ constructor (message) {
 }
 
 module.exports=BadRequest;
+

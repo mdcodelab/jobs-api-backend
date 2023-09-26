@@ -4,7 +4,7 @@ const { StatusCodes } = require("http-status-codes");
 const errorHandlerMiddleware = (err, req, res, next) => {
   // Set default error values
   let customError = {
-    //set ad default
+    //set as  default
     statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
     msg: err.message || "Something goes wrong, try again later.",
   };

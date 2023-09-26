@@ -1,7 +1,7 @@
 
 const Job=require("../models/Jobs");
 const {BadRequest}=require("../errors/bad-request.js");
-const {NotFound}=require("../errors/not-found");
+const NotFound=require("../errors/not-found");
 const {StatusCodes}=require("http-status-codes");
 
 const getAllJobs = async (req, res) => {
